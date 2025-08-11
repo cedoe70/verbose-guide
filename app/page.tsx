@@ -5,10 +5,48 @@ import { motion } from "framer-motion";
 
 export default function HomePage() {
   return (
-    <div className="bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white">
-      
+    <div className="bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white relative overflow-hidden">
+      <style jsx>{`
+        /* Animated Crypto Background */
+        .crypto-bg::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.15), transparent 60%),
+                      radial-gradient(circle at 80% 40%, rgba(0, 255, 255, 0.15), transparent 60%),
+                      radial-gradient(circle at 50% 80%, rgba(255, 0, 255, 0.15), transparent 60%);
+          animation: move-bg 20s linear infinite;
+          z-index: 0;
+        }
+
+        @keyframes move-bg {
+          0% { transform: translate(0, 0) rotate(0deg); }
+          50% { transform: translate(-10%, -10%) rotate(180deg); }
+          100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        /* Scrolling Crypto Ticker */
+        .ticker-wrapper {
+          overflow: hidden;
+          white-space: nowrap;
+          box-sizing: border-box;
+        }
+        .ticker {
+          display: inline-block;
+          padding-left: 100%;
+          animation: ticker-scroll 25s linear infinite;
+        }
+        @keyframes ticker-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-100%); }
+        }
+      `}</style>
+
       {/* Hero Section with Animated Crypto Background */}
-      <section className="crypto-bg text-center py-20 px-6 relative">
+      <section className="crypto-bg text-center py-20 px-6 relative overflow-hidden">
         <motion.h1
           className="text-4xl md:text-6xl font-bold mb-4 relative z-10"
           initial={{ opacity: 0, y: -20 }}
@@ -25,10 +63,12 @@ export default function HomePage() {
         </div>
 
         {/* Price Ticker */}
-        <div className="crypto-ticker absolute bottom-0 left-0 w-full text-yellow-400 text-sm font-semibold z-10">
-          <span>
-            BTC: $65,432 ▲2.4% • ETH: $3,120 ▲1.8% • BNB: $412 ▼0.5% • SOL: $152 ▲3.1% • XRP: $0.64 ▲0.9% • DOGE: $0.092 ▲5.4%
-          </span>
+        <div className="absolute bottom-0 left-0 w-full bg-black/40 py-2 text-yellow-400 text-sm font-semibold z-10">
+          <div className="ticker-wrapper">
+            <div className="ticker">
+              BTC: $65,432 ▲2.4% • ETH: $3,120 ▲1.8% • BNB: $412 ▼0.5% • SOL: $152 ▲3.1% • XRP: $0.64 ▲0.9% • DOGE: $0.092 ▲5.4% • BTC: $65,432 ▲2.4% • ETH: $3,120 ▲1.8% • BNB: $412 ▼0.5% • SOL: $152 ▲3.1% • XRP: $0.64 ▲0.9% • DOGE: $0.092 ▲5.4%
+            </div>
+          </div>
         </div>
       </section>
 
