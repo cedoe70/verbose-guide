@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Card, CardBody, CardHeader } from "@heroui/react";
+import { Card, CardBody, CardHeader } from "@heroui/react";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
@@ -58,8 +58,8 @@ export default function HomePage() {
           Secure, transparent, and high–yield cryptocurrency investment plans built for the future.
         </p>
         <div className="flex justify-center gap-4 relative z-10">
-          <Button color="primary" variant="shadow" size="lg">Get Started</Button>
-          <Button color="secondary" variant="ghost" size="lg">View Plans</Button>
+          <button className="btn-primary">Get Started</button>
+          <button className="btn-secondary">View Plans</button>
         </div>
 
         {/* Price Ticker */}
@@ -103,7 +103,7 @@ export default function HomePage() {
                 <p>Duration: {plan.duration}</p>
                 <p>Min Investment: {plan.min}</p>
                 <p>Max Investment: {plan.max}</p>
-                <Button color="primary" variant="shadow" className="mt-4 w-full">Invest Now</Button>
+                <button className="btn-primary w-full">Invest Now</button>
               </CardBody>
             </Card>
           ))}
@@ -132,7 +132,7 @@ export default function HomePage() {
       {/* Final CTA */}
       <footer className="text-center py-16">
         <h3 className="text-2xl font-bold mb-4">Join thousands of investors today</h3>
-        <Button color="primary" size="lg" variant="shadow">Get Started</Button>
+        <button className="btn-primary">Get Started</button>
       </footer>
     </div>
   );
