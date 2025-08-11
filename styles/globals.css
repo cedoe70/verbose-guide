@@ -1,57 +1,11 @@
 @import "tailwindcss";
-@config "../tailwind.config.js";
 
-/* ====== Fonts ====== */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap');
-
-html, body {
-  font-family: 'Poppins', sans-serif;
-}
-
-h1, h2, h3 {
-  font-family: 'Orbitron', sans-serif;
-}
-
-/* ====== Glow Text Effect ====== */
-.glow-text {
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7),
-               0 0 20px rgba(255, 215, 0, 0.5);
-}
-
-/* ====== Buttons ====== */
-.btn-primary {
-  background: linear-gradient(90deg, #FFD700, #FFA500);
-  color: black;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-  transition: all 0.3s ease-in-out;
-}
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
-}
-
-.btn-secondary {
-  background: transparent;
-  border: 2px solid #FFD700;
-  color: #FFD700;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  transition: all 0.3s ease-in-out;
-}
-.btn-secondary:hover {
-  background: rgba(255, 215, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-/* ====== Animated Crypto Background ====== */
+/* Animated Crypto Background */
 .crypto-bg {
   position: relative;
   overflow: hidden;
 }
+
 .crypto-bg::before {
   content: "";
   position: absolute;
@@ -59,37 +13,47 @@ h1, h2, h3 {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, transparent 70%),
-              url("https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=025") repeat;
+  background:
+    radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, transparent 70%),
+    url("https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=025") repeat;
   background-size: 100px 100px, 300px 300px;
   animation: cryptoMove 60s linear infinite;
   opacity: 0.3;
 }
+
 @keyframes cryptoMove {
-  from { transform: rotate(0deg) translate(0, 0); }
-  to { transform: rotate(360deg) translate(0, 0); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* ====== Price Ticker Styling ====== */
+/* Price Ticker Styling */
 .crypto-ticker {
   white-space: nowrap;
   overflow: hidden;
   position: relative;
   background: rgba(0, 0, 0, 0.6);
 }
+
 .crypto-ticker span {
   display: inline-block;
   padding-left: 100%;
   animation: tickerScroll 30s linear infinite;
 }
+
 @keyframes tickerScroll {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-100%); }
 }
+
 @keyframes ticker {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
+
 .animate-ticker {
   display: inline-flex;
   animation: ticker 20s linear infinite;
