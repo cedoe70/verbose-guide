@@ -2,13 +2,41 @@
 
 import { Button, Card, CardBody, CardHeader } from "@heroui/react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
+  const [prices, setPrices] = useState<string>("");
+
+  useEffect(() => {
+    // Simple live fetch from CoinGecko
+    const fetchPrices = async () => {
+      try {
+        const res = await fetch(
+          "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,dogecoin&vs_currencies=usd"
+        );
+        const data = await res.json();
+        setPrices(
+          `Bitcoin: $${data.bitcoin.usd}  |  Ethereum: $${data.ethereum.usd}  |  Dogecoin: $${data.dogecoin.usd}`
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchPrices();
+    const interval = setInterval(fetchPrices, 30000); // refresh every 30s
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white">
-      
-      {/* Hero Section */}
-      <section className="text-center py-20 px-6">
+
+      {/* Price Ticker */}
+      <div className="crypto-ticker text-yellow-400 py-2 text-sm">
+        <span>{prices || "Loading live prices..."}</span>
+      </div>
+
+      {/* Hero Section with Animated Crypto Background */}
+      <section className="crypto-bg text-center py-20 px-6 relative z-10">
         <motion.h1
           className="text-4xl md:text-6xl font-bold mb-4"
           initial={{ opacity: 0, y: -20 }}
@@ -25,6 +53,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* The rest of your existing sections remain unchanged */}
       {/* Stats Section */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-6 px-6 md:px-20 py-12 bg-gray-800">
         {[
