@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config "../tailwind.config.js";
 
 /* Animated Crypto Background */
 .crypto-bg {
@@ -13,9 +14,8 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background:
-    radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, transparent 70%),
-    url("https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=025") repeat;
+  background: radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, transparent 70%),
+              url("https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=025") repeat;
   background-size: 100px 100px, 300px 300px;
   animation: cryptoMove 60s linear infinite;
   opacity: 0.3;
@@ -23,10 +23,10 @@
 
 @keyframes cryptoMove {
   from {
-    transform: rotate(0deg);
+    transform: rotate(0deg) translate(0, 0);
   }
   to {
-    transform: rotate(360deg);
+    transform: rotate(360deg) translate(0, 0);
   }
 }
 
